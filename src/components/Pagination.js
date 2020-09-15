@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-export default function Pagination({ setCurrentPage }) {
+export default function Pagination({ setCurrentPage, currentPage }) {
    
     const numberOfPages = []
 
@@ -10,7 +10,7 @@ export default function Pagination({ setCurrentPage }) {
     return (
         <div>
             {numberOfPages.map(page => (
-            <button key={page} onClick={() => setCurrentPage(page)}>
+            <button key={page} onClick={() => setCurrentPage(page)} className={page === currentPage ? "current-page" : "page-button"}>
                 {page}
             </button>))}
         </div>

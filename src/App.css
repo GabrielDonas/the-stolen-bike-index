@@ -1,16 +1,72 @@
+:root{
+    background-color: #1a1a2e;
+    font-family: "Kumbh Sans", Arial, Helvetica, sans-serif;
+    color: rgb(204, 203, 203);
+}
+
+/* Report Index*/
+.query-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #query-result{
     display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: .7rem 0;
-    background-color: #d1dffa;
+    margin: .3rem 0;
+    padding: .5rem;
+    background-color: #0f3460;
+    width: 70rem;
 }
 
 #query-result img{
-    padding: .5rem;
+    padding-right: .5rem;
+    height: 200px;
 }
 
 #bike-info{
     padding: 1rem;
-    max-width: 35rem; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#bike-info h3{
+    font-size: 2rem;
+}
+
+.date-time{
+    margin-bottom: 5px;
+}
+
+/* Pagination*/
+
+.page-button{
+    background-color: #e43f5a;
+    border: none;
+    color: white;
+    padding: 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.page-button:hover{
+    background-color: white;
+    color: #e43f5a;
+}
+
+.current-page{
+    background-color: white;
+    border: none;
+    color: #e43f5a;
+    padding: 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: default;
 }

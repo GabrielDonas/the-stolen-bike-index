@@ -31,19 +31,21 @@ export default function ReportIndex() {
     }
 
     return (
-        <div>
+        <div className="query-container">
             {reports.map(item =>(
             <div key={item.id} id="query-result">
                 <img src={item.media.image_url_thumb ? item.media.image_url_thumb : imgPlaceholder} alt=""/>
                 <div id="bike-info">
-                <h3>{item.title}</h3>
+                    <h3>{item.title}</h3>
                     <p>{item.description}</p>
-                        <div>date: {timeStampConverter(item.occurred_at)}</div>
+                    <div> 
+                        <div className="date-time">time: {timeStampConverter(item.occurred_at)}</div>
                         <div>location: {item.address}</div>
+                    </div>
                 </div>
             </div>
             ))}
-            <Pagination setCurrentPage={setCurrentPage}/>
+            <Pagination setCurrentPage={setCurrentPage} currentPage={currentPage}/>
         </div>
     )
 }

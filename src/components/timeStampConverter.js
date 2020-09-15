@@ -19,11 +19,9 @@ export default function timeStampConverter(unixtimestamp){
     // Minutes
     const minutes = "0" + date.getMinutes();
    
-    // Seconds
-    const seconds = "0" + date.getSeconds();
    
     // Display date time in MM-dd-yyyy h:m:s format
-    const convdataTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2) +' time: '+ day+'/'+month+'/'+year;
+    const convdataTime = hours + ':' + minutes.substr(-2) +' |  date: '+ day+'/'+month+'/'+year;
     
    return convdataTime;
     
