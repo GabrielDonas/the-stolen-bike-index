@@ -4,19 +4,19 @@ export const SearchBar = ({ setQuery, setQueryLocation }) => {
     const [queryInput, setQueryInput] = useState('')
     const [locationInput, setLocationInput] = useState('')
 
+    function inputToQuery(event) {
+        event.preventDefault()
+        const inputToArray = (event.target.value).split(' ') 
+        const query = inputToArray.join('%20')
+        return query
+    }
 
     function handleQueryChange(e) {
-        e.preventDefault()
-        const inputArray = (e.target.value).split(' ') 
-        const query = inputArray.join('%20')
-        setQueryInput(query)
+        setQueryInput(inputToQuery(e))
     }
 
     function handleLocationChange(e){
-        e.preventDefault()
-        const inputArray = (e.target.value).split(' ') 
-        const query = inputArray.join('%20')
-        setLocationInput('&proximity=' + query)
+        setLocationInput(inputToQuery(e))
     }
     
     return (
