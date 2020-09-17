@@ -32,9 +32,10 @@ export default function ReportIndex() {
                 const initialCondition = (currentPage * numberOfResultsPerPage) - (numberOfResultsPerPage - 1)
                 const stopCondition = currentPage * numberOfResultsPerPage
                 let resultList = [];
-              
                 for(let i = initialCondition - 1; i < stopCondition; i++){
-                  resultList.push(incidents[i])
+                  if(incidents[i]){
+                    resultList.push(incidents[i])
+                    }
                 }
                 setResults(resultList)
               }

@@ -5,20 +5,73 @@ export default function Pagination({ setCurrentPage, currentPage, totalIncidents
    
     const totalNumberOfPages = Math.ceil(totalIncidents / numberOfResultsPerPage)
     const numberOfPages = []
-    for(let i = 1; i <= totalNumberOfPages; i++){ numberOfPages.push(i) }
+    const anchorPagination = 3
+    
+    const followingPages = () =>{
+        if((currentPage + anchorPagination ) > totalNumberOfPages){
+            return totalNumberOfPages
+        } else {
+            return currentPage + anchorPagination 
+        }    
+    }
+
+    const previousPages = () =>{
+     if((currentPage - anchorPagination ) <= 0){
+         return 1
+     } else {
+         return currentPage - anchorPagination 
+     }
+    }
 
     
+    for(let i = previousPages(); i <= followingPages(); i++){ 
+        numberOfPages.push(i) 
+    }
+
+    //Buttons
+    const pageButtons =  (numberOfPages.map(page => (
+                             <button key={page} 
+                             onClick={() => setCurrentPage(page)} 
+                             className={page === currentPage ? "current-page" : "page-button"}>
+                                {page}
+                            </button>)))
+    
+    const nextButton = (<button className="page-button" onClick={() => setCurrentPage(currentPage + 1)}>Next</button>)
+    const lastPageButton = (<button className="page-button" onClick={() => setCurrentPage(totalNumberOfPages)}>»</button>)
+    const firstPageButton = (<button className="page-button" onClick={() => setCurrentPage(1)}>«</button>)
+    const prevButton = (<button className="page-button" onClick={() => setCurrentPage(currentPage - 1)}>Prev</button>)
 
     if(results.length === 0){
         return null
-    } else {
-        return (
-            <div>
-                {numberOfPages.map(page => (
-                <button key={page} onClick={() => setCurrentPage(page)} className={page === currentPage ? "current-page" : "page-button"}>
-                    {page}
-                </button>))}
-            </div>
-            )
+    } else { 
+        switch(currentPage) {
+            case 1: 
+                return (
+                    <div>
+                        {pageButtons}
+                        {nextButton}
+                        {lastPageButton}              
+                    </div>
+                )
+
+            case totalNumberOfPages:
+               return (
+                    <div>
+                        {firstPageButton}
+                        {prevButton}
+                        {pageButtons}           
+                    </div>
+                )
+            default:
+                return (
+                    <div>
+                        {firstPageButton}
+                        {prevButton}
+                        {pageButtons}
+                        {nextButton}
+                        {lastPageButton}              
+                    </div>
+                )
         }
     }
+}
