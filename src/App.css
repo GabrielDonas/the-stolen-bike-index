@@ -11,7 +11,7 @@
     align-items: center;
 }
 
-#query-result{
+.query-result{
     display: flex;
     margin: .3rem 0;
     padding: .5rem;
@@ -19,7 +19,7 @@
     width: 70rem;
 }
 
-#query-result img{
+.query-result img{
     padding-right: .5rem;
     height: 200px;
 }

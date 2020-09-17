@@ -8,36 +8,49 @@ const imgPlaceholder ='https://via.placeholder.com/300'
 
 export default function ReportIndex() {
     const [results, setResults] = useState([])
+    const [totalIncidents, setTotalIncidents] = useState(1000)
     const [loading, setLoading] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
+    const [numberOfResultsPerPage, setNumberOfResultsPerPage] = useState(10)
     const [query, setQuery] = useState('')
     const [queryLocation, setQueryLocation] = useState('')
+    
+    const bikewiseURL = `https://bikewise.org:443/api/v2/incidents?page=&per_page=${totalIncidents}&incident_type=theft&proximity=${queryLocation}&query=${query}`
 
-    const bikewiseURL = `https://bikewise.org:443/api/v2/incidents?page=${currentPage}&per_page=10&incident_type=theft&proximity=${queryLocation}&query=${query}`
-
+    
 
     useEffect (() => {
         const fetchList = async () =>{
             setLoading(true)
             const data = await fetch(bikewiseURL)
             const list = await data.json()
-            const incidents = list.incidents
-            console.log(incidents)
-            setResults(incidents)
+            const incidents = await list.incidents
+            setTotalIncidents(incidents.length)
             setLoading(false)
+            console.log(bikewiseURL)
+            const resultsPerPage = () => { 
+                const initialCondition = (currentPage * numberOfResultsPerPage) - (numberOfResultsPerPage - 1)
+                const stopCondition = currentPage * numberOfResultsPerPage
+                let resultList = [];
+              
+                for(let i = initialCondition - 1; i < stopCondition; i++){
+                  resultList.push(incidents[i])
+                }
+                setResults(resultList)
+              }
+              resultsPerPage() 
         }
-        fetchList()   
-    }, [bikewiseURL])
+        fetchList() 
+         
+    }, [bikewiseURL, 
+        currentPage,
+        numberOfResultsPerPage])
 
     
     
     if(loading){
         return <h2>Loading...</h2>
     }
-
-    //if(results.length === 0) { 
-    //    return <h2>Oops... No results found.</h2>
-    //}
 
     return (
         <>
@@ -46,7 +59,7 @@ export default function ReportIndex() {
                 <NumberOfResults results={results}/>
             
                 {results.map(item => (
-                <div key={item.id} id="query-result">
+                <div key={item.id} className="query-result">
                     <img src={item.media.image_url_thumb ? item.media.image_url_thumb : imgPlaceholder} alt=""/>
                     <div id="bike-info">
                         <h3>{item.title}</h3>
@@ -59,7 +72,8 @@ export default function ReportIndex() {
                 </div>
                 ))}
 
-                <Pagination setCurrentPage={setCurrentPage} currentPage={currentPage} results={results}/>
+                <Pagination setCurrentPage={setCurrentPage} currentPage={currentPage} totalIncidents={totalIncidents}
+                numberOfResultsPerPage={numberOfResultsPerPage} results={results}/>
 
             </div>
         </>

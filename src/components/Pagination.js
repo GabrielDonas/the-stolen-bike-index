@@ -1,10 +1,13 @@
 import React from 'react'
 
 
-export default function Pagination({ setCurrentPage, currentPage, results }) {
+export default function Pagination({ setCurrentPage, currentPage, totalIncidents, numberOfResultsPerPage, results }) {
    
+    const totalNumberOfPages = Math.ceil(totalIncidents / numberOfResultsPerPage)
     const numberOfPages = []
-    for(let i = 1; i <= 10; i++){ numberOfPages.push(i) }
+    for(let i = 1; i <= totalNumberOfPages; i++){ numberOfPages.push(i) }
+
+    
 
     if(results.length === 0){
         return null
