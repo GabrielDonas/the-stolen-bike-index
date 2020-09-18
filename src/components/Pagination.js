@@ -28,18 +28,25 @@ export default function Pagination({ setCurrentPage, currentPage, totalIncidents
         numberOfPages.push(i) 
     }
 
+    const scrollToTop = () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        })
+      }
+
     //Buttons
     const pageButtons =  (numberOfPages.map(page => (
                              <button key={page} 
-                             onClick={() => setCurrentPage(page)} 
+                             onClick={() =>{ setCurrentPage(page); scrollToTop()}} 
                              className={page === currentPage ? "current-page" : "page-button"}>
                                 {page}
                             </button>)))
     
-    const nextButton = (<button className="page-button" onClick={() => setCurrentPage(currentPage + 1)}>Next</button>)
-    const lastPageButton = (<button className="page-button" onClick={() => setCurrentPage(totalNumberOfPages)}>»</button>)
-    const firstPageButton = (<button className="page-button" onClick={() => setCurrentPage(1)}>«</button>)
-    const prevButton = (<button className="page-button" onClick={() => setCurrentPage(currentPage - 1)}>Prev</button>)
+    const nextButton = (<button className="page-button" onClick={() => {setCurrentPage(currentPage + 1) ; scrollToTop()}}>Next</button>)
+    const lastPageButton = (<button className="page-button" onClick={() => {setCurrentPage(totalNumberOfPages) ; scrollToTop()}}>»</button>)
+    const firstPageButton = (<button className="page-button" onClick={() => {setCurrentPage(1) ; scrollToTop()}}>«</button>)
+    const prevButton = (<button className="page-button" onClick={() => {setCurrentPage(currentPage - 1) ; scrollToTop()}}>Prev</button>)
 
     if(results.length === 0){
         return null
