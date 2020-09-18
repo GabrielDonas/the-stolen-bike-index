@@ -4,9 +4,10 @@ import Pagination from './Pagination'
 import SearchBar from './SearchBar'
 import NumberOfResults from './NumberOfResults'
 
-const imgPlaceholder ='https://via.placeholder.com/300'
+const imgPlaceholder ='https://bikeindex.org/assets/revised/bike_photo_placeholder-ff15adbd9bf89e10bf3cd2cd6c4e85e5d1056e50463ae722822493624db72e56.svg'
 
 export default function ReportIndex() {
+    const [dataFetch, setDataFetch] = useState([])
     const [results, setResults] = useState([])
     const [totalIncidents, setTotalIncidents] = useState(1000)
     const [loading, setLoading] = useState(false)
@@ -17,6 +18,7 @@ export default function ReportIndex() {
     
     const bikewiseURL = `https://bikewise.org:443/api/v2/incidents?page=&per_page=${totalIncidents}&incident_type=theft&proximity=${queryLocation}&query=${query}`
 
+
     
 
     useEffect (() => {
@@ -25,29 +27,29 @@ export default function ReportIndex() {
             const data = await fetch(bikewiseURL)
             const list = await data.json()
             const incidents = await list.incidents
+            setDataFetch(incidents)
             setTotalIncidents(incidents.length)
-            setLoading(false)
-            console.log(bikewiseURL)
-            const resultsPerPage = () => { 
-                const initialCondition = (currentPage * numberOfResultsPerPage) - (numberOfResultsPerPage - 1)
-                const stopCondition = currentPage * numberOfResultsPerPage
-                let resultList = [];
-                for(let i = initialCondition - 1; i < stopCondition; i++){
-                  if(incidents[i]){
-                    resultList.push(incidents[i])
-                    }
-                }
-                setResults(resultList)
-              }
-              resultsPerPage() 
+            setLoading(false)      
         }
         fetchList() 
          
-    }, [bikewiseURL, 
-        currentPage,
-        numberOfResultsPerPage])
+    }, [bikewiseURL])
 
-    
+    useEffect(() =>{ 
+        const resultsPerPage = () => { 
+            const initialCondition = (currentPage * numberOfResultsPerPage) - (numberOfResultsPerPage - 1)
+            const stopCondition = currentPage * numberOfResultsPerPage
+            let resultList = [];
+            for(let i = initialCondition - 1; i < stopCondition; i++){
+              if(dataFetch[i]){
+                resultList.push(dataFetch[i])
+                }
+            }
+            setResults(resultList)
+          }
+          resultsPerPage()
+    }, [currentPage, numberOfResultsPerPage, dataFetch])
+         
     
     if(loading){
         return <h2>Loading...</h2>
@@ -56,7 +58,7 @@ export default function ReportIndex() {
     return (
         <>
             <div className="query-container">
-                <SearchBar  setQuery={setQuery} setQueryLocation={setQueryLocation}/>
+                <SearchBar  setQuery={setQuery} setQueryLocation={setQueryLocation} setCurrentPage={setCurrentPage}/>
                 <NumberOfResults results={results}/>
             
                 {results.map(item => (

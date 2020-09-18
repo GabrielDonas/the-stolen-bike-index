@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export const SearchBar = ({ setQuery, setQueryLocation }) => {
+export const SearchBar = ({ setQuery, setQueryLocation, setCurrentPage }) => {
     const [queryInput, setQueryInput] = useState('')
     const [locationInput, setLocationInput] = useState('')
 
@@ -23,7 +23,7 @@ export const SearchBar = ({ setQuery, setQueryLocation }) => {
         <div>
             <input type="text" placeholder="search by case or bike model" onChange={handleQueryChange}></input>
             <input type="text" placeholder="location" onChange={handleLocationChange}></input>
-            <button onClick={() => {setQuery(queryInput); setQueryLocation(locationInput)}}>Search</button>
+            <button onClick={() => {setQuery(queryInput); setQueryLocation(locationInput); setCurrentPage(1)}}>Search</button>
         </div>
     )
 }
