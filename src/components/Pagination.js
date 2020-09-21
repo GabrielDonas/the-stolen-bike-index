@@ -7,6 +7,11 @@ export default function Pagination({ setCurrentPage, currentPage, totalIncidents
     const numberOfPages = []
     const anchorPagination = 3
     
+    const handleClick = (value) => {
+        setCurrentPage(value) ; 
+        scrollToTop()
+    }
+    
     const followingPages = () =>{
         if((currentPage + anchorPagination ) > totalNumberOfPages){
             return totalNumberOfPages
@@ -43,10 +48,10 @@ export default function Pagination({ setCurrentPage, currentPage, totalIncidents
                                 {page}
                             </button>)))
     
-    const nextButton = (<button className="page-button" onClick={() => {setCurrentPage(currentPage + 1) ; scrollToTop()}}>Next</button>)
-    const lastPageButton = (<button className="page-button" onClick={() => {setCurrentPage(totalNumberOfPages) ; scrollToTop()}}>»</button>)
-    const firstPageButton = (<button className="page-button" onClick={() => {setCurrentPage(1) ; scrollToTop()}}>«</button>)
-    const prevButton = (<button className="page-button" onClick={() => {setCurrentPage(currentPage - 1) ; scrollToTop()}}>Prev</button>)
+    const nextButton = (<button className="page-button" onClick={() => handleClick(currentPage + 1)}>Next</button>)
+    const lastPageButton = (<button className="page-button" onClick={() => handleClick(totalNumberOfPages)}>»</button>)
+    const firstPageButton = (<button className="page-button" onClick={() => handleClick(1)}>«</button>)
+    const prevButton = (<button className="page-button" onClick={() => handleClick(currentPage - 1)}>Prev</button>)
 
     if(results.length === 0){
         return null
