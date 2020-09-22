@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import { Link } from "react-router-dom";
 import timeStampConverter from './timeStampConverter'
 import Pagination from './Pagination'
 import SearchBar from './SearchBar'
@@ -59,20 +60,22 @@ export default function ReportIndex() {
         <>
             <div className="query-container">
                 <SearchBar  setQuery={setQuery} setQueryLocation={setQueryLocation} setCurrentPage={setCurrentPage}/>
-                <NumberOfResults results={results}/>
+                <NumberOfResults results={results} totalIncidents={totalIncidents}/>
             
                 {results.map(item => (
-                <div key={item.id} className="query-result">
-                    <img src={item.media.image_url_thumb ? item.media.image_url_thumb : imgPlaceholder} alt=""/>
-                    <div id="bike-info">
-                        <h3>{item.title}</h3>
-                        <p>{!item.description ? 'No description has been provided.' : item.description}</p>
-                        <div> 
-                            <div className="date-time">time: {timeStampConverter(item.occurred_at)}</div>
-                            <div>location: {item.address}</div>
+                <Link to={`/incidentpage/${item.id}`} key={item.id} className="link-style">
+                    <div className="query-result">
+                        <img src={item.media.image_url_thumb ? item.media.image_url_thumb : imgPlaceholder} alt=""/>
+                        <div id="bike-info">
+                            <h3>{item.title}</h3>
+                            <p>{!item.description ? 'No description has been provided.' : item.description}</p>
+                            <div> 
+                                <div className="date-time">time: {timeStampConverter(item.occurred_at)}</div>
+                                <div>location: {item.address}</div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </Link>
                 ))}
 
                 <Pagination setCurrentPage={setCurrentPage} currentPage={currentPage} totalIncidents={totalIncidents}

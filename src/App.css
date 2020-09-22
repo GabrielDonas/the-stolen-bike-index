@@ -17,6 +17,18 @@
     padding: .5rem;
     background-color: #0f3460;
     width: 70rem;
+    color: rgb(204, 203, 203);
+    text-decoration: inherit;
+
+    transition: 0.3s;
+}
+
+.query-result:hover{
+    background-color: #1b5eaf;
+}
+
+.link-style{
+    text-decoration: inherit;
 }
 
 .query-result img{
@@ -60,7 +72,6 @@
     color: #e43f5a;
 }
 
-/* this is just a test */
 
 .current-page{
     background-color: white;
@@ -73,3 +84,4 @@
     margin: 4px 2px;
     cursor: default;
 }
+
