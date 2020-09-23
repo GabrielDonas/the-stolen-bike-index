@@ -4,6 +4,7 @@ import timeStampConverter from './timeStampConverter'
 import Pagination from './Pagination'
 import SearchBar from './SearchBar'
 import NumberOfResults from './NumberOfResults'
+import LoadingPage from './LoadingPage';
 
 const imgPlaceholder ='https://bikeindex.org/assets/revised/bike_photo_placeholder-ff15adbd9bf89e10bf3cd2cd6c4e85e5d1056e50463ae722822493624db72e56.svg'
 
@@ -53,7 +54,7 @@ export default function ReportIndex() {
          
     
     if(loading){
-        return <h2>Loading...</h2>
+        return <LoadingPage />
     }
 
     return (
@@ -63,7 +64,7 @@ export default function ReportIndex() {
                 <NumberOfResults results={results} totalIncidents={totalIncidents}/>
             
                 {results.map(item => (
-                <Link to={`/incidentpage/${item.id}`} key={item.id} className="link-style">
+                <Link to={`/incidentpage/${item.id}`} key={item.id} className="link-style" target="_blank">
                     <div className="query-result">
                         <img src={item.media.image_url_thumb ? item.media.image_url_thumb : imgPlaceholder} alt=""/>
                         <div id="bike-info">

@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import './reset.css'
+import 'mapbox-gl/dist/mapbox-gl.css'
 import ReportIndex from './components/ReportIndex'
 import IncidentPage from './components/IncidentPage'
 import {
