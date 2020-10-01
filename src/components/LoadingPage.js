@@ -1,9 +1,14 @@
 import React from 'react'
+import '../assets/loader.css';
+
 
 const LoadingPage = () => {
     return (
-        <div>
-            <h2>Loading...</h2>
+        <div class="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
     )
 }

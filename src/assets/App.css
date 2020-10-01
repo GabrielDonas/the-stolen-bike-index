@@ -4,6 +4,58 @@
     color: rgb(204, 203, 203);
 }
 
+header{
+
+    width: 100%;
+    color: white;
+
+}
+
+header div{
+    margin: 3rem;
+}
+
+header h1{
+    position: absolute;
+    left: 62px;
+    top:16px;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+header svg{
+    position: absolute;
+    top: 5.5px;
+    left: 13px;
+}
+
+header path{
+    fill:#fc7300;
+}
+
+header h3{
+    font-size: 1.2rem;
+
+}
+
+/*
+    1875 heigth / 4375 width 
+    0.42
+*/
+.imagemap-container{
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.imagemap{
+    background-image: url("./BikeMap.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    padding-top: 42%;
+    width: 100%;
+}
+
 /* Report Index*/
 .query-container{
     display: flex;
@@ -13,10 +65,10 @@
 
 .query-result{
     display: flex;
-    margin: .3rem 0;
+    margin: 1rem 0;
     padding: .5rem;
-    background-color: #0f3460;
-    width: 70rem;
+    background-color: #212f53;
+    width: 70vw;
     color: rgb(204, 203, 203);
     text-decoration: inherit;
 
@@ -25,6 +77,17 @@
 
 .query-result:hover{
     background-color: #1b5eaf;
+}
+
+@media (max-width: 425px){
+    .query-result{
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        height: auto;
+    }
+    .bike-info p{
+        margin: 1rem 0;
+    }
 }
 
 .link-style{
@@ -37,15 +100,20 @@
     max-height: 200px;;
 }
 
-#bike-info{
+.bike-info{
     padding: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-#bike-info h3{
+.bike-info h3{
     font-size: 2rem;
+    color: white;
+}
+
+.bike-info p{
+    margin: 1rem 0;
 }
 
 .date-time{
@@ -55,7 +123,7 @@
 /* Pagination*/
 
 .page-button{
-    background-color: #e43f5a;
+    background-color: #fc7300;
     border: none;
     color: white;
     padding: 15px 15px;

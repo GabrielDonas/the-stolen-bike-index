@@ -67,7 +67,7 @@ export default function ReportIndex() {
                 <Link to={`/incidentpage/${item.id}`} key={item.id} className="link-style" target="_blank">
                     <div className="query-result">
                         <img src={item.media.image_url_thumb ? item.media.image_url_thumb : imgPlaceholder} alt=""/>
-                        <div id="bike-info">
+                        <div className="bike-info">
                             <h3>{item.title}</h3>
                             <p>{!item.description ? 'No description has been provided.' : item.description}</p>
                             <div> 
