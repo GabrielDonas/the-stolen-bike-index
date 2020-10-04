@@ -1,0 +1,80 @@
+.incident-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.incident-container h1{
+    font-size: 3rem;
+    margin: 0 .5rem 1rem .5rem;
+    color: white;
+    text-align: center;
+}
+
+.incident-container p{
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    padding: .5rem;
+    max-width: 70%;
+}
+
+.incident-img-wrapper{
+    width: 100%;
+    margin: 0 auto 1rem auto;
+}
+
+.incident-img{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    padding-top: 42%;
+    width: 100%;
+}
+
+.incident-address{
+    text-align: center;
+    margin-bottom: .5rem;
+    font-size: 1rem;
+}
+
+.contact-link{
+    background-color: #fc7300;
+    font-weight: 800;
+    border: none;
+    padding: 15px 15px;
+    text-align: center;
+    display: inline-block;
+    margin: 1rem 0 2rem 0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contact-link:hover{
+    background-color: #ff5100;
+}
+
+.contact-link a{
+    text-decoration: none;
+    color: white;
+}
+
+
+@media (max-width: 768px){
+    .incident-img{
+        padding-top: 62%;
+    }
+}
+
+@media (max-width: 425px){
+    .incident-container h1{
+    font-size: 2rem;
+    }
+    .incident-container p{
+        font-size: 1rem;
+        max-width: 90%;
+    }
+    .incident-address{
+        font-size: .8rem;
+    }
+}

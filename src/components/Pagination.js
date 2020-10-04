@@ -1,4 +1,5 @@
 import React from 'react'
+import '../assets/pagination.css';
 
 
 export default function Pagination({ setCurrentPage, currentPage, totalIncidents, numberOfResultsPerPage, results }) {
