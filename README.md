@@ -37,7 +37,7 @@ This project was bootstrapped with [React](https://github.com/facebook/create-re
  ```bash
 $ git clone https://github.com/GabrielDonas/the-stolen-bike-index.git MyApp
 $ cd MyApp
-$ npm install                      # Installs dependencies
+$ npm install                      # Install dependencies
 $ npm start                       # Compile the app and opens it in a browser with "live reload"
 ```
 Then open http://localhost:3000/ to see the app.
