@@ -3,6 +3,7 @@ The Stolen Bike Index 🚴
 The Stolen Bike Index allows users to search for reported bike thefts by location and incident details. 
 
 ⚠️ Sorry, the Bikewise API is down. I'll fix it soon! ⚠️ 
+
 👉 [Live  app here!](https://cranky-jennings-7f670a.netlify.app/) 👈
 
 ### About
